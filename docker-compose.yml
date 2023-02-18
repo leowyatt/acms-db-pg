@@ -36,11 +36,12 @@ services:
     restart: always
     depends_on:
       - db
-
+    
 #-----------------------------------------------------------------------------
 networks:
-  sapi_default:
-
+  default:
+    name: acmsp 
+    external: true
 # -----------------------------------------------------------------------------
 volumes:
   db_data:
