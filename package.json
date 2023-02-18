@@ -1,0 +1,61 @@
+{
+  "name": "acms-sapi-expg",
+  "version": "1.0.0",
+  "author": "leowyatt",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "pull": "git pull",
+    "build": "yarn dcd build --no-cache",
+    "up": "yarn dcd up -d --build",
+    "restart": "yarn dcd restart",
+    "down": "yarn dcd down",
+    "logs": "yarn dcd logs -f",
+    "patch": "yarn version --patch",
+    "rm": "docker volume prune",
+    "rms": "docker system prune -a --volumes",
+    "update": "yarn pull; yarn install; yarn up; sleep 10; yarn migrate up; sleep 10; yarn restart",
+    "migrate": "yarn db-migrate",
+    "dcd": "docker compose --profile dev",
+    "dev": "yarn up",
+    "prod": "yarn up"
+  },
+  "comments": {
+    "scripts": {
+      "pull": "git pull",
+      "build": "build no-cache",
+      "up": "start with build",
+      "restart": "restart",
+      "down": "stop",
+      "logs": "logs",
+      "patch": "version patch",
+      "rm": "volumes prune",
+      "rms": "system prune all",
+      "update": "app pull and install, sapi update",
+      "migrate": "migrate database",
+      "dcd": "start docker-compose dev",
+      "dev": "start develop",
+      "prod": "start production"
+    }
+  },
+  "dependencies": {
+    "db-migrate": "0.11.13",
+    "db-migrate-pg": "1.2.2"
+  },
+  "devDependencies": {
+    "pm2": "^5.2.2"
+  },
+  "engines": {
+    "npm": ">=8.5.5 <=10.0.0",
+    "node": ">=16.15.0 <=19.0.0",
+    "yarn": ">=1.22.15 <=3.0.0"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/test/**",
+      "**/docs/**"
+    ],
+    "delay": 2500,
+    "watch": "./src/**/*"
+  }
+}
